@@ -1,6 +1,6 @@
 # setup rvm for ruby and gemset
 file ".rvmrc", <<-END
-rvm use ruby-1.8.7-p302@rails3_talktrak
+rvm use ruby-1.8.7-p302@rails3_base
 END
 
 
