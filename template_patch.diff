@@ -1,0 +1,26 @@
+From 6a1459d4b41a5831847f10004e2afbd9eb177746 Mon Sep 17 00:00:00 2001
+From: Morgan Nelson <mnelson@steele-forge.com>
+Date: Sat, 25 Sep 2010 22:11:09 -0500
+Subject: [PATCH] modified to allow template generation to apply changes to environment/*.rb
+
+---
+ railties/lib/rails/generators/actions.rb |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/railties/lib/rails/generators/actions.rb b/railties/lib/rails/generators/actions.rb
+index 8f0d5ff..f8800b1 100644
+--- a/railties/lib/rails/generators/actions.rb
++++ b/railties/lib/rails/generators/actions.rb
+@@ -99,7 +99,8 @@ module Rails
+             inject_into_file 'config/application.rb', "\n  #{data}", :after => sentinel, :verbose => false
+           else
+             Array.wrap(options[:env]).each do|env|
+-              append_file "config/environments/#{env}.rb", "\n#{data}", :verbose => false
++              sentinel = /Application.configure do/i
++              inject_into_file "config/environments/#{env}.rb", "\n#{data}", :after => sentinel, :verbose => false
+             end
+           end
+         end
+-- 
+1.7.3
+
