@@ -2,6 +2,8 @@ This is my template. There are many like it, but this one is mine.
 
 You probably won't have any use for it beyond casual voyeurism.
 
+Bits shamelessly stolen for too many places to mention.  Thanks everyone!
+
 This template won't work with a base rails 3.0.0 install.  There is a bug in the 
 template processing code in Rails, that I've patched locally.  The bug attempts
 to simply append any code spcified in the "environment" section to the end of the
