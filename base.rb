@@ -17,13 +17,14 @@ run "rm public/favicon.ico"
 run "rm public/robots.txt"
 run "rm public/images/rails.png"
 run "rm .gitignore"
-run "for i in `find ./ -iname '*erb'`; do html2haml -e  $i `echo $i | sed 's/erb/haml/'`; rm -rf $i ; done"
 
 # Set up .gitignore files
 run "touch tmp/.gitignore log/.gitignore vendor/.gitignore"
 run %{find . -type d -empty | grep -v "vendor" | grep -v ".git" | grep -v "tmp" | xargs -I xxx touch xxx/.gitignore}
 
 file '.gitignore', <<-END
+.idea
+.project
 .bundle
 .DS_Store
 log/*.log
@@ -78,10 +79,20 @@ gem 'rspec-rails', '>=2.0.0.beta.1', :group => :test
 generate "devise:install"
 generate "model Role"
 generate "controller Welcome index"
-
-
 generate "devise User"
 generate "devise:views user"
+
+inside "spec" do
+  run "mkdir support" 
+end
+
+inside "spec/support" do
+  file "devise.rb", <<-END
+RSpec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
+end
+END
+end
 
 #setup user -> roles associations
 file_data = <<-END
@@ -102,6 +113,9 @@ file_data = <<-END
 inject_into_file "app/models/role.rb", file_data, :after => /ActiveRecord::Base/i
 
 route "root :to => 'welcome#index'"
+
+#convert _everything_ to haml as the last step
+run "for i in `find ./ -iname '*erb'`; do html2haml -e  $i `echo $i | sed 's/erb/haml/'`; rm -rf $i ; done"
 
 # Set up git repository
 git :init
