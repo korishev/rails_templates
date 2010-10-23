@@ -78,7 +78,7 @@ gem 'rspec-rails', '>= 2.0.0', :group => [:development, :test]
 gem 'cucumber-rails', '>= 0.3.2', :group => [:development, :test]
 gem 'webrat', :group => [:development, :test]
 
-#run 'bundle install'
+run 'bundle install'
 
 generate "rspec:install"
 generate "cucumber:install"
