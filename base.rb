@@ -63,7 +63,6 @@ END
 
 run "mkdir public/stylesheets/sass"
 
-
 gem 'haml'
 gem 'hpricot'
 gem 'ruby_parser'
@@ -71,11 +70,18 @@ gem 'devise'
 gem 'declarative_authorization'
 gem 'factory_girl'
 gem 'pg'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'heroku'
 
-gem 'rspec', '>=2.0.0.beta.1', :group => :test
-gem 'rspec-rails', '>=2.0.0.beta.1', :group => :test
+gem 'rspec', '>= 2.0.0', :group => [:development, :test]
+gem 'rspec-rails', '>= 2.0.0', :group => [:development, :test]
+gem 'cucumber-rails', '>= 0.3.2', :group => [:development, :test]
+gem 'webrat', :group => [:development, :test]
 
+#run 'bundle install'
+
+generate "rspec:install"
+generate "cucumber:install"
 generate "devise:install"
 generate "model Role"
 generate "controller Welcome index"
