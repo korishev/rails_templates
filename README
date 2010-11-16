@@ -10,6 +10,8 @@ to simply append any code spcified in the "environment" section to the end of th
 environments/whatever.rb file.  With Rails 3.0, that's not the correct behavior,
 you have to place them before the last "end" in the file.  
 
+I've included the patch file in the repo, so if you feel you must, go ahead :)
+
 template includes:
 
   haml
