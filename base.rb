@@ -65,6 +65,7 @@ run "mkdir public/stylesheets/sass"
 
 gem 'haml'
 gem 'hpricot'
+gem 'formtastic', '~> 1.1.0'
 gem 'ruby_parser'
 gem 'devise'
 gem 'declarative_authorization'
@@ -87,6 +88,7 @@ generate "model Role"
 generate "controller Welcome index"
 generate "devise User"
 generate "devise:views user"
+generate "formtastic:install"
 
 inside "spec" do
   run "mkdir support" 
